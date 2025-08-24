@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:heybus/screens/bus_list_screen.dart';
 import 'package:heybus/screens/placeholder_screen.dart';
-import 'package:heybus/screens/bus_map_screen.dart';
-import 'package:heybus/data/sample_data.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -12,13 +10,13 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 2;
+  int _selectedIndex = 2; // Inicia en la pestaña de "Buses"
 
-  final List<Widget> _widgetOptions = [
-    const PlaceholderScreen(title: 'Inicio'),
-    BusMapScreen(busRoutes: SampleData.sampleBusRoutes),
-    const BusListScreen(),
-    const PlaceholderScreen(title: 'Servicios'),
+  static const List<Widget> _widgetOptions = <Widget>[
+    PlaceholderScreen(title: 'Inicio'),
+    PlaceholderScreen(title: 'Mapa General'), // Un futuro mapa general
+    BusListScreen(),
+    PlaceholderScreen(title: 'Servicios'),
   ];
 
   void _onItemTapped(int index) {
@@ -30,7 +28,9 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _widgetOptions[_selectedIndex],
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -56,8 +56,8 @@ class _MainScreenState extends State<MainScreen> {
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.blue,
+        type: BottomNavigationBarType.fixed, // Para que todos los labels sean visibles
+        selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.grey[600],
         showUnselectedLabels: true,
       ),
