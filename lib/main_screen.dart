@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:heybus/screens/bus_list_screen.dart';
 import 'package:heybus/screens/placeholder_screen.dart';
+import 'package:heybus/screens/map_screen.dart'; // <--- 1. IMPORTA la nueva pantalla del mapa
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -12,9 +13,10 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 2; // Inicia en la pestaña de "Buses"
 
+  // 2. REEMPLAZA el PlaceholderScreen del mapa por tu nuevo MapScreen
   static const List<Widget> _widgetOptions = <Widget>[
     PlaceholderScreen(title: 'Inicio'),
-    PlaceholderScreen(title: 'Mapa General'), // Un futuro mapa general
+    MapScreen(), // <-- Este es el cambio principal
     BusListScreen(),
     PlaceholderScreen(title: 'Servicios'),
   ];
